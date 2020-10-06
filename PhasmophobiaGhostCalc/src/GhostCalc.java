@@ -280,13 +280,9 @@ public class GhostCalc
     for (Ghost specificGhost : GivenGhost.GHOST_LIST)
     {
       if (newGhost.equals(specificGhost))
-      {
         reverseAddRemove(specificGhost.getName());
-      }
       else
-      {
         addRemove(specificGhost.getName());
-      }
     }
     impossibleGhosts.setText("Impossible Ghost List:" + printOut(impossible));
     possibleGhosts.setText("Possible Ghost List:" + printOut(possible));
