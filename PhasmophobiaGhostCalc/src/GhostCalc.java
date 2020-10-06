@@ -14,7 +14,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-//Made By LifelongTundra
+/**
+ * @author LifelongTundra
+ * @version 2.1 10/6/2020
+ * 
+ * Improved logic calculator for the game Phasmophobia.
+ */
 
 public class GhostCalc
 {
