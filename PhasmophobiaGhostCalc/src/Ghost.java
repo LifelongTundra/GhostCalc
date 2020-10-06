@@ -1,3 +1,4 @@
+//Made By LifelongTundra
 
 public class Ghost
 {
@@ -8,75 +9,90 @@ public class Ghost
   private int ghostOrb;
   private int emf5;
   private String name;
-  
-  public Ghost() {
+
+  public Ghost()
+  {
     spiritBox = 0;
     fingerPrints = 0;
     ghostWriting = 0;
     freezingTemp = 0;
-    ghostOrb = 0; 
+    ghostOrb = 0;
     emf5 = 0;
     name = "Unknown";
   }
-  
-  public Ghost(int sb, int fp, int gw, int ft, int go, int emf, String name) {
+
+  public Ghost(int sb, int fp, int gw, int ft, int go, int emf, String name)
+  {
     spiritBox = sb;
     fingerPrints = fp;
     ghostWriting = gw;
     freezingTemp = ft;
-    ghostOrb = go; 
+    ghostOrb = go;
     emf5 = emf;
     this.name = name;
   }
-  
-  public void setSpiritBox(int sb) {
+
+  public void setSpiritBox(int sb)
+  {
     spiritBox = sb;
   }
-  
-  public void setFingerPrints(int fp) {
+
+  public void setFingerPrints(int fp)
+  {
     fingerPrints = fp;
   }
 
-  public void setGhostWriting(int gw) {
+  public void setGhostWriting(int gw)
+  {
     ghostWriting = gw;
   }
-  
-  public void setFreezingTemp(int ft) {
+
+  public void setFreezingTemp(int ft)
+  {
     freezingTemp = ft;
   }
-  
-  public void setGhostOrb(int go) {
+
+  public void setGhostOrb(int go)
+  {
     ghostOrb = go;
   }
-  
-  public void setEMF(int emf) {
+
+  public void setEMF(int emf)
+  {
     emf5 = emf;
   }
-  
-  public void setName(String name) {
+
+  public void setName(String name)
+  {
     this.name = name;
   }
-  
-  public String getName() {
+
+  public String getName()
+  {
     return name;
   }
-  
-  public int[] getAttributes() {
+
+  public int[] getAttributes()
+  {
     return new int[] {spiritBox, fingerPrints, ghostWriting, freezingTemp, ghostOrb, emf5};
   }
-  
-  public boolean equals(Ghost ghost) {
+
+  public boolean equals(Ghost ghost)
+  {
     int currAttr[] = getAttributes();
     int checkAttr[] = ghost.getAttributes();
-    for (int i = 0; i < 6; i++) {
-      if (currAttr[i] == 1 && checkAttr[i] <= 0) {
+    for (int i = 0; i < 6; i++)
+    {
+      if (currAttr[i] == 1 && checkAttr[i] <= 0)
+      {
         return false;
       }
-      else if (currAttr[i] == -1 && checkAttr[i] == 1) {
+      else if (currAttr[i] == -1 && checkAttr[i] == 1)
+      {
         return false;
       }
     }
     return true;
   }
-  
+
 }

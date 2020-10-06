@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+//Made By LifelongTundra
+
 public class GhostCalc
 {
   private JFrame frame;
@@ -262,13 +264,14 @@ public class GhostCalc
       impossible.remove(str);
     }
   }
-  
-  private void evidenceAdd(String str) {
+
+  private void evidenceAdd(String str)
+  {
     if (!evidenceList.contains(str))
       evidenceList.add(str);
     if (evidenceList.contains("No " + str))
       evidenceList.remove("No " + str);
-    else  
+    else
       evidenceList.remove(str.substring(3));
   }
 
