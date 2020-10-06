@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 
 /**
  * @author LifelongTundra
- * @version 2.1 10/6/2020
+ * @version 2.2 10/6/2020
  * 
  * Improved logic calculator for the game Phasmophobia.
  */
