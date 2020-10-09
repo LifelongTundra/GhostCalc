@@ -8,3 +8,5 @@ Currently the calculate button DOES NOT do anything. It was original going to up
 If you have downloaded the .jar and nothing opens when opening the file, try downloading the most recent Java JDK from https://www.oracle.com/java/technologies/javase-jdk15-downloads.html (10/6/2020) and then try opening again.
 
 Please leave suggestions or issues on this page or you can shoot me a DM on Discord @Tundra#7777 
+
+(Update 10/8/20) Version 3.0 is currently on its way with the addition of a ghost description tab once you have narrowed it down to at least three ghost. This tab will let you know the description of the ghost and all of its needed eveidence. I will update the Java executable when a stable finish version is produced, however, the new source code is up to look at. I added in some better logic for keeping track of possible and impossible ghost which also allows for very easy additions of new ghosts when the game adds new ones in.
