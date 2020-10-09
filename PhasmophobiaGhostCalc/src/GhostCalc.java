@@ -25,12 +25,14 @@ public class GhostCalc
 {
   private JFrame frame;
   private Ghost newGhost;
-  private List<String> possible = new ArrayList<String>();
-  private List<String> impossible = new ArrayList<String>();
+  private List<Ghost> possible = new ArrayList<Ghost>();
+  private List<Ghost> impossible = new ArrayList<Ghost>();
   private List<String> evidenceList = new ArrayList<String>();
+  private List<String> descriptions = new ArrayList<String>();
   private JTextArea possibleGhosts = new JTextArea("Possible Ghost List:");
   private JTextArea impossibleGhosts = new JTextArea("Impossible Ghost List:");
   private JTextArea evidence = new JTextArea("Current Evidence:");
+  private JTextArea descText = new JTextArea(15, 75);
 
   public GhostCalc()
   {
@@ -60,6 +62,15 @@ public class GhostCalc
     JPanel resetButton = new JPanel();
     resetButton.setLayout(new GridLayout(1, 2));
     resetButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+    
+    JPanel interactionSection = new JPanel();
+    interactionSection.setLayout(new BorderLayout());
+    
+    JPanel descriptions = new JPanel();
+    descriptions.setPreferredSize(new Dimension(200, 275));
+    descText.setText("Description Box:");
+    descriptions.add(descText);
+    
 
     JButton reset = new JButton("RESET");
     JButton calc = new JButton("Calculate");
@@ -108,7 +119,7 @@ public class GhostCalc
     resetButton.add(reset);
     resetButton.add(calc);
 
-    possibleGhosts.setText("Possible Ghost List:" + printOut(possible));
+    possibleGhosts.setText("Possible Ghost List:" + printGhostList(possible));
 
     possibilityPanel.add(possibleGhosts);
     possibilityPanel.add(impossibleGhosts);
@@ -129,11 +140,15 @@ public class GhostCalc
     e.gridx = 1;
     e.gridy = 2;
     middleSection.add(evidence, e);
-
-    frame.add(evidencePad, BorderLayout.WEST);
-    frame.add(middleSection, BorderLayout.CENTER);
-    frame.add(noEvidencePad, BorderLayout.EAST);
-    frame.add(resetButton, BorderLayout.SOUTH);
+    
+    interactionSection.add(evidencePad, BorderLayout.WEST);
+    interactionSection.add(middleSection, BorderLayout.CENTER);
+    interactionSection.add(noEvidencePad, BorderLayout.EAST);
+    interactionSection.add(resetButton, BorderLayout.SOUTH);
+    
+    frame.add(interactionSection, BorderLayout.CENTER);
+    frame.add(descriptions, BorderLayout.SOUTH);
+    
 
     newGhost = new Ghost();
   }
@@ -228,6 +243,15 @@ public class GhostCalc
     }
     return output;
   }
+  
+  private String printGhostList(List<Ghost> list) {
+    String output = "\n";
+    for (int i = 0; i < list.size(); i++)
+    {
+      output += list.get(i).getName() + "\n";
+    }
+    return output;
+  }
 
   private void reset()
   {
@@ -235,38 +259,40 @@ public class GhostCalc
     impossible.clear();
     possible.clear();
     evidenceList.clear();
-    possible.add("Spirit");
-    possible.add("Wraith");
-    possible.add("Phantom");
-    possible.add("Poltergeist");
-    possible.add("Banshee");
-    possible.add("Jinn");
-    possible.add("Mare");
-    possible.add("Revenant");
-    possible.add("Shade");
-    possible.add("Demon");
-    possible.add("Yurei");
-    possible.add("Oni");
-    impossibleGhosts.setText("Impossible Ghost List:" + printOut(impossible));
-    possibleGhosts.setText("Possible Ghost List:" + printOut(possible));
-    evidence.setText("Current Evidence:" + printOut(evidenceList));
+    descriptions.clear();
+    possible.add(GhostConstants.SPIRIT);
+    possible.add(GhostConstants.WRAITH);
+    possible.add(GhostConstants.PHANTOM);
+    possible.add(GhostConstants.POLTERGEIST);
+    possible.add(GhostConstants.BANSHEE);
+    possible.add(GhostConstants.JINN);
+    possible.add(GhostConstants.MARE);
+    possible.add(GhostConstants.REVENANT);
+    possible.add(GhostConstants.SHADE);
+    possible.add(GhostConstants.DEMON);
+    possible.add(GhostConstants.YUREI);
+    possible.add(GhostConstants.ONI);
+    impossibleGhosts.setText("Impossible Ghost List:");
+    possibleGhosts.setText("Possible Ghost List:" + printGhostList(possible));
+    evidence.setText("Current Evidence:");
+    descText.setText("Description Box:");
   }
 
-  private void addRemove(String str)
+  private void addRemove(Ghost ghost)
   {
-    if (!impossible.contains(str))
+    if (!impossible.contains(ghost))
     {
-      possible.remove(str);
-      impossible.add(str);
+      possible.remove(ghost);
+      impossible.add(ghost);
     }
   }
 
-  private void reverseAddRemove(String str)
+  private void reverseAddRemove(Ghost ghost)
   {
-    if (!possible.contains(str))
+    if (!possible.contains(ghost))
     {
-      possible.add(str);
-      impossible.remove(str);
+      possible.add(ghost);
+      impossible.remove(ghost);
     }
   }
 
@@ -282,15 +308,25 @@ public class GhostCalc
 
   public void evaluate(Ghost ghost)
   {
-    for (Ghost specificGhost : GivenGhost.GHOST_LIST)
+    for (Ghost specificGhost : GhostConstants.GHOST_LIST)
     {
       if (newGhost.equals(specificGhost))
-        reverseAddRemove(specificGhost.getName());
+        reverseAddRemove(specificGhost);
       else
-        addRemove(specificGhost.getName());
+        addRemove(specificGhost);
     }
-    impossibleGhosts.setText("Impossible Ghost List:" + printOut(impossible));
-    possibleGhosts.setText("Possible Ghost List:" + printOut(possible));
+    if (possible.size() <= 3 && possible.size() > 0) {
+      String ghostDesc = "";
+      for (int i = 0; i < possible.size(); i++) {
+        ghostDesc += possible.get(i).getName() + ": \n" + possible.get(i).getDesc() + "\n\n"; 
+      }
+      descText.setText("Description Box:\n\n" + ghostDesc);
+    } else {
+      descriptions.clear();
+      descText.setText("Description Box:");
+    }
+    impossibleGhosts.setText("Impossible Ghost List:" + printGhostList(impossible));
+    possibleGhosts.setText("Possible Ghost List:" + printGhostList(possible));
     evidence.setText("Current Evidence:" + printOut(evidenceList));
   }
 

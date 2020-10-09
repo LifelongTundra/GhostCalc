@@ -9,6 +9,7 @@ public class Ghost
   private int ghostOrb;
   private int emf5;
   private String name;
+  private String description;
 
   public Ghost()
   {
@@ -21,7 +22,7 @@ public class Ghost
     name = "Unknown";
   }
 
-  public Ghost(int sb, int fp, int gw, int ft, int go, int emf, String name)
+  public Ghost(int sb, int fp, int gw, int ft, int go, int emf, String name, String desc)
   {
     spiritBox = sb;
     fingerPrints = fp;
@@ -30,6 +31,7 @@ public class Ghost
     ghostOrb = go;
     emf5 = emf;
     this.name = name;
+    description = desc;
   }
 
   public void setSpiritBox(int sb)
@@ -70,6 +72,11 @@ public class Ghost
   public String getName()
   {
     return name;
+  }
+  
+  public String getDesc() 
+  {
+    return description;
   }
 
   public int[] getAttributes()
