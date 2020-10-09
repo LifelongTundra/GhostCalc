@@ -76,8 +76,8 @@ public class GhostCalc
     JButton calc = new JButton("Calculate");
     JButton sb = new JButton("Spirit Box");
     JButton nsb = new JButton("No Spirit Box");
-    JButton fp = new JButton("Finger Prints");
-    JButton nfp = new JButton("No Finger Prints");
+    JButton fp = new JButton("Fingerprints");
+    JButton nfp = new JButton("No Fingerprints");
     JButton gw = new JButton("Ghost Writing");
     JButton ngw = new JButton("No Ghost Writing");
     JButton ft = new JButton("Freezing Temperature");
@@ -170,12 +170,12 @@ public class GhostCalc
           evidenceAdd(e.getActionCommand());
           evaluate(newGhost);
           break;
-        case "Finger Prints":
+        case "Fingerprints":
           newGhost.setFingerPrints(1);
           evidenceAdd(e.getActionCommand());
           evaluate(newGhost);
           break;
-        case "No Finger Prints":
+        case "No Fingerprints":
           newGhost.setFingerPrints(-1);
           evidenceAdd(e.getActionCommand());
           evaluate(newGhost);
@@ -260,18 +260,8 @@ public class GhostCalc
     possible.clear();
     evidenceList.clear();
     descriptions.clear();
-    possible.add(GhostConstants.SPIRIT);
-    possible.add(GhostConstants.WRAITH);
-    possible.add(GhostConstants.PHANTOM);
-    possible.add(GhostConstants.POLTERGEIST);
-    possible.add(GhostConstants.BANSHEE);
-    possible.add(GhostConstants.JINN);
-    possible.add(GhostConstants.MARE);
-    possible.add(GhostConstants.REVENANT);
-    possible.add(GhostConstants.SHADE);
-    possible.add(GhostConstants.DEMON);
-    possible.add(GhostConstants.YUREI);
-    possible.add(GhostConstants.ONI);
+    for(Ghost specificGhost : GhostConstants.GHOST_LIST)
+      possible.add(specificGhost);
     impossibleGhosts.setText("Impossible Ghost List:");
     possibleGhosts.setText("Possible Ghost List:" + printGhostList(possible));
     evidence.setText("Current Evidence:");
@@ -318,7 +308,7 @@ public class GhostCalc
     if (possible.size() <= 3 && possible.size() > 0) {
       String ghostDesc = "";
       for (int i = 0; i < possible.size(); i++) {
-        ghostDesc += possible.get(i).getName() + ": \n" + possible.get(i).getDesc() + "\n\n"; 
+        ghostDesc += possible.get(i).getName() + " -- Remaining Evidence: " + possible.get(i).getEvidence(newGhost) + "||\n" + possible.get(i).getDesc() + "\n\n"; 
       }
       descText.setText("Description Box:\n\n" + ghostDesc);
     } else {

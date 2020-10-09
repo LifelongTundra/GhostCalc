@@ -17,7 +17,8 @@ public class GhostConstants
   public static final String ONI_DESC = "An Oni is a very active ghost and it’s likely that it will show itself within the first few minutes of the game.\nIt’s also likely to wander around near the ghost room. It’s recommended to hide in a closet and wait for it to leave, but It won't give you evidence easily.";
   
   
-  // Constructor list goes [SpiritBox, FingerPrints, GhostWriting, FreezingTemp, GhostOrb, EMF]
+  public static final String[] EVIDENCE_ORDER = new String[] {"Spirit Box", "Fingerprints", "Ghost Writing", "Freezing Temperature", "Ghost Orb", "EMF 5"};
+  // Constructor list goes [SpiritBox, Fingerprints, GhostWriting, FreezingTemp, GhostOrb, EMF]
   public static final Ghost SPIRIT = new Ghost(1, 1, 1, 0, 0, 0, "Spirit", SPIRIT_DESC);
   public static final Ghost WRAITH = new Ghost(1, 1, 0, 1, 0, 0, "Wraith", WRAITH_DESC);
   public static final Ghost PHANTOM = new Ghost(0, 0, 0, 1, 1, 1, "Phantom", PHANTOM_DESC);

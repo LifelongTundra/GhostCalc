@@ -1,3 +1,5 @@
+import java.util.List;
+
 //Made By LifelongTundra
 
 public class Ghost
@@ -82,6 +84,18 @@ public class Ghost
   public int[] getAttributes()
   {
     return new int[] {spiritBox, fingerPrints, ghostWriting, freezingTemp, ghostOrb, emf5};
+  }
+  
+  public String getEvidence(Ghost ghost) {
+    String evidence = "";
+    int[] attr = getAttributes();
+    int[] otherAttr = ghost.getAttributes();
+    for (int i = 0; i < 6; i++) {
+      if (attr[i] == 1 && otherAttr[i] == 0) {
+        evidence += "|| " + GhostConstants.EVIDENCE_ORDER[i] + " "; 
+      }
+    }
+    return evidence;
   }
 
   public boolean equals(Ghost ghost)
