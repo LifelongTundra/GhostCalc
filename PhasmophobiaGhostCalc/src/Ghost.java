@@ -1,5 +1,3 @@
-import java.util.List;
-
 //Made By LifelongTundra
 
 public class Ghost
